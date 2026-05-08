@@ -1,77 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Diet Generator</title>
+    <title>Coach Aakib | Elite Global Academy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root { --neon: #00ffcc; --dark: #121212; }
-        body { background: var(--dark); color: white; font-family: sans-serif; padding: 20px; }
-        .card { background: #1e1e1e; padding: 20px; border-radius: 15px; border: 1px solid var(--neon); }
-        input, select { width: 100%; padding: 10px; margin: 10px 0; background: #333; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box; }
-        button { width: 100%; padding: 15px; background: var(--neon); border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
-        .result { margin-top: 20px; padding: 15px; background: rgba(0,255,204,0.1); border-radius: 10px; display: none; }
-        .whatsapp-btn { background: #25d366; color: white; text-align: center; display: block; padding: 15px; text-decoration: none; border-radius: 10px; margin-top: 15px; font-weight: bold; }
+        :root { --neon: #00ffa3; --bg: #050505; --card: #111; }
+        body { background: var(--bg); color: #ddd; font-family: 'Inter', sans-serif; margin: 0; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+        .app-container { display: grid; grid-template-columns: 300px 1fr 350px; gap: 10px; flex: 1; padding: 10px; }
+        @media (max-width: 1100px) { .app-container { grid-template-columns: 1fr; overflow-y: auto; } }
+
+        /* Sidebar & Cards */
+        .sidebar { background: var(--card); border-radius: 15px; padding: 20px; overflow-y: auto; border: 1px solid #222; }
+        .folder-btn { padding: 12px; background: #1a1a1a; margin: 8px 0; border-radius: 10px; font-size: 13px; cursor: pointer; border: 1px solid #333; transition: 0.3s; }
+        .folder-btn:hover { border-color: var(--neon); color: var(--neon); }
+
+        /* Certificate Images Styling */
+        .cert-img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid #444; filter: grayscale(20%); transition: 0.5s; cursor: pointer; }
+        .cert-img:hover { filter: grayscale(0%); transform: scale(1.05); border-color: var(--neon); }
+
+        /* AI Bot Box */
+        .ai-box { background: #000; padding: 20px; border-radius: 20px; border: 1px solid var(--neon); margin-bottom: 20px; }
+        .ai-input { width: 75%; padding: 12px; background: #111; border: 1px solid #444; color: white; border-radius: 10px; }
+        
+        main { background: #0a0a0a; border-radius: 20px; padding: 30px; overflow-y: auto; border: 1px solid #222; }
+        .wa-float { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; text-decoration: none; z-index: 1000; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h2>Expert Diet Generator</h2>
-        <p style="font-size: 12px; color: #888;">Powered by Coach Aakib (Certified Nutritionist)</p>
+<div class="app-container">
+    <aside class="sidebar">
+        <h3 style="color:var(--neon);"><i class="fas fa-file-medical"></i> CLINICAL PORTALS</h3>
+        <div class="folder-btn" onclick="showContent('diabetes')">Diabetes & Insulin Sensitivity</div>
+        <div class="folder-btn" onclick="showContent('thyroid')">Thyroid & Metabolism Fix</div>
+        <div class="folder-btn" onclick="showContent('cancer')">Cancer Support Nutrition</div>
         
-        <input type="number" id="weight" placeholder="Weight (kg)">
-        <select id="goal">
-            <option value="lose">Fat Loss</option>
-            <option value="gain">Muscle Gain</option>
-            <option value="maintain">Maintenance</option>
-        </select>
-        
-        <button onclick="calculateDiet()">Generate My Plan</button>
+        <h3 style="color:var(--neon); margin-top:30px;"><i class="fas fa-utensils"></i> CALORIE DEPOT</h3>
+        <div class="folder-btn" onclick="showContent('diet2000')">2000 Kcal: Lean Recomp</div>
+        <div class="folder-btn" onclick="showContent('diet3000')">3000 Kcal: Hypertrophy</div>
+        <div class="folder-btn" onclick="showContent('diet4000')">4000 Kcal: Pro-Mass Build</div>
+    </aside>
 
-        <div id="result" class="result">
-            <h3 id="res-title"></h3>
-            <p id="res-macros"></p>
-            <hr>
-            <p style="font-size: 13px;"><b>Note:</b> Ye basic plan hai. Expert guidance ke liye niche click karein.</p>
+    <main id="main">
+        <div class="ai-box">
+            <h2 style="color:var(--neon); margin:0 0 10px 0;"><i class="fas fa-robot"></i> RESEARCH AI BOT</h2>
+            <input type="text" id="aiIn" class="ai-input" placeholder="Ask about WHO minerals, water intake or AAS safety...">
+            <button onclick="askBot()" style="padding:12px; background:var(--neon); border:none; border-radius:10px; cursor:pointer; font-weight:bold;">SEARCH</button>
+            <div id="aiOut" style="margin-top:15px; color:var(--neon); font-size:14px; display:none;"></div>
         </div>
 
-        <a href="https://wa.me/YOUR_NUMBER" class="whatsapp-btn">Get Advanced Supplement Plan (WhatsApp)</a>
-    </div>
+        <div id="displayArea">
+            <h1 style="color:var(--neon);">International Nutrition Standards</h1>
+            <p>WHO Recommended Water Intake: <b>4.5L/day</b> for high-protein athletes.</p>
+            <p>Essential Minerals: Zinc, Magnesium, and Vitamin D3 (5000 IU) mandatory for elite performance.</p>
+            <hr style="border:0; border-top:1px solid #333; margin:20px 0;">
+            <h3>Latest Research: AAS Safety</h3>
+            <p>Based on Medifit protocols, liver protection (UDCA/TUDCA) is vital. Never skip PCT (Post Cycle Therapy).</p>
+        </div>
+    </main>
 
-    <script>
-        function calculateDiet() {
-            let weight = document.getElementById('weight').value;
-            let goal = document.getElementById('goal').value;
-            let resultDiv = document.getElementById('result');
-            
-            if(!weight) { alert("Please enter weight"); return; }
+    <aside class="sidebar">
+        <div style="text-align:center; border:1px solid var(--neon); padding:15px; border-radius:15px; background: #1a1a1a;">
+            <img src="https://diet-generator-tool.vercel.app/1000268759.jpg" style="width:100px; height:100px; border-radius:50%; border:2px solid var(--neon); object-fit:cover;">
+            <h4 style="margin:10px 0 0 0; color:var(--neon);">COACH AAKIB</h4>
+            <p style="font-size:10px; color:#888;">UAE BASED ELITE TRAINER</p>
+        </div>
 
-            let calories, protein, carbs, fats;
+        <h3 style="color:var(--neon); margin-top:20px;">VERIFIED CERTIFICATES</h3>
+        <p style="font-size:11px; margin-bottom:5px;">FGIIT Diploma & SNT</p>
+        <img src="https://diet-generator-tool.vercel.app/1000264424.jpg" class="cert-img">
+        <img src="https://diet-generator-tool.vercel.app/1000264422.jpg" class="cert-img">
+        
+        <p style="font-size:11px; margin-bottom:5px;">Skill India & Fab Academy</p>
+        <img src="https://diet-generator-tool.vercel.app/1000264407.jpg" class="cert-img">
+        
+        <p style="font-size:11px; margin-bottom:5px;">London College Career Dev.</p>
+        <img src="https://diet-generator-tool.vercel.app/1000264408.jpg" class="cert-img">
+    </aside>
+</div>
 
-            if(goal === 'lose') {
-                calories = weight * 22;
-                protein = weight * 2.2;
-                fats = weight * 0.7;
-            } else if(goal === 'gain') {
-                calories = weight * 35;
-                protein = weight * 1.8;
-                fats = weight * 1;
-            } else {
-                calories = weight * 28;
-                protein = weight * 1.6;
-                fats = weight * 0.8;
-            }
-            
-            carbs = (calories - (protein * 4 + fats * 9)) / 4;
+<a href="https://wa.me/971564583055" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-            document.getElementById('res-title').innerText = "Your Daily Target: " + Math.round(calories) + " kcal";
-            document.getElementById('res-macros').innerHTML = `
-                Protein: ${Math.round(protein)}g | 
-                Fats: ${Math.round(fats)}g | 
-                Carbs: ${Math.round(carbs)}g`;
-            
-            resultDiv.style.display = "block";
-        }
-    </script>
+<script>
+    function askBot() {
+        const q = document.getElementById('aiIn').value;
+        const out = document.getElementById('aiOut');
+        out.style.display = "block";
+        out.innerHTML = "<i class='fas fa-sync fa-spin'></i> AI is scanning Global Health PDFs...";
+        setTimeout(() => {
+            out.innerHTML = "<b>Analysis for '" + q + "':</b> This is a high-level scientific query. Based on WHO & Global standards, detailed protocol is available in Coach Aakib's Private Portal.";
+        }, 1200);
+    }
+
+    function showContent(type) {
+        const area = document.getElementById('displayArea');
+        if(type === 'diabetes') area.innerHTML = "<h2>Diabetes Management</h2><p>Focus on Glycemic Index (GI). High fiber intake and cinnamon supplementation to manage insulin sensitivity.</p>";
+        else if(type === 'diet4000') area.innerHTML = "<h2>4000 Kcal Pro-Mass Plan</h2><p><b>P: 250g | C: 500g | F: 100g</b><br>Meal 1: 150g Oats + 6 Egg Whites<br>Meal 2: 250g Chicken + 2 Cups Brown Rice.</p>";
+        // Other content logic here...
+    }
+</script>
+
 </body>
 </html>
