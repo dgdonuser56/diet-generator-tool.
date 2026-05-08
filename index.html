@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Diet Generator</title>
+    <style>
+        :root { --neon: #00ffcc; --dark: #121212; }
+        body { background: var(--dark); color: white; font-family: sans-serif; padding: 20px; }
+        .card { background: #1e1e1e; padding: 20px; border-radius: 15px; border: 1px solid var(--neon); }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; background: #333; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: var(--neon); border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .result { margin-top: 20px; padding: 15px; background: rgba(0,255,204,0.1); border-radius: 10px; display: none; }
+        .whatsapp-btn { background: #25d366; color: white; text-align: center; display: block; padding: 15px; text-decoration: none; border-radius: 10px; margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Expert Diet Generator</h2>
+        <p style="font-size: 12px; color: #888;">Powered by Coach Aakib (Certified Nutritionist)</p>
+        
+        <input type="number" id="weight" placeholder="Weight (kg)">
+        <select id="goal">
+            <option value="lose">Fat Loss</option>
+            <option value="gain">Muscle Gain</option>
+            <option value="maintain">Maintenance</option>
+        </select>
+        
+        <button onclick="calculateDiet()">Generate My Plan</button>
+
+        <div id="result" class="result">
+            <h3 id="res-title"></h3>
+            <p id="res-macros"></p>
+            <hr>
+            <p style="font-size: 13px;"><b>Note:</b> Ye basic plan hai. Expert guidance ke liye niche click karein.</p>
+        </div>
+
+        <a href="https://wa.me/YOUR_NUMBER" class="whatsapp-btn">Get Advanced Supplement Plan (WhatsApp)</a>
+    </div>
+
+    <script>
+        function calculateDiet() {
+            let weight = document.getElementById('weight').value;
+            let goal = document.getElementById('goal').value;
+            let resultDiv = document.getElementById('result');
+            
+            if(!weight) { alert("Please enter weight"); return; }
+
+            let calories, protein, carbs, fats;
+
+            if(goal === 'lose') {
+                calories = weight * 22;
+                protein = weight * 2.2;
+                fats = weight * 0.7;
+            } else if(goal === 'gain') {
+                calories = weight * 35;
+                protein = weight * 1.8;
+                fats = weight * 1;
+            } else {
+                calories = weight * 28;
+                protein = weight * 1.6;
+                fats = weight * 0.8;
+            }
+            
+            carbs = (calories - (protein * 4 + fats * 9)) / 4;
+
+            document.getElementById('res-title').innerText = "Your Daily Target: " + Math.round(calories) + " kcal";
+            document.getElementById('res-macros').innerHTML = `
+                Protein: ${Math.round(protein)}g | 
+                Fats: ${Math.round(fats)}g | 
+                Carbs: ${Math.round(carbs)}g`;
+            
+            resultDiv.style.display = "block";
+        }
+    </script>
+</body>
+</html>
