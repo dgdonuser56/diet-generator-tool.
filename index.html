@@ -3,132 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aakib Elite | Clinical Nutrition & Bio-Hacking OS</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Syed Akki | Elite Fitness OS</title>
+    
+    <!-- Professional SEO & Meta Tags -->
+    <meta name="description" content="Syed Akki - Certified Fitness Trainer & Nutritionist in Dubai. Get custom diet plans and elite training.">
+    <meta name="keywords" content="Fitness Trainer Dubai, Nutritionist UAE, Syed Akki, Bodybuilding Diet, Weight Loss Dubai">
+    <meta name="author" content="Syed Akki Tech Developer">
+
+    <!-- Social Media Sharing (Open Graph) -->
+    <meta property="og:title" content="Syed Akki | Elite Fitness OS">
+    <meta property="og:description" content="Transform your physique with certified expert protocols in Dubai.">
+    <meta property="og:url" content="https://akkifitness.vercel.app">
+    <meta property="og:image" content="https://akkifitness.vercel.app/og-image.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Resources -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        :root { --neon: #00ffa3; --bg: #000; --card: #0a0a0a; --glass: rgba(20, 20, 20, 0.9); }
-        * { box-sizing: border-box; font-family: 'Inter', sans-serif; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        body { background: var(--bg); color: #fff; margin: 0; display: flex; height: 100vh; overflow: hidden; }
-
-        /* Left Navigation */
-        nav { width: 300px; background: #050505; border-right: 1px solid #1a1a1a; padding: 25px; display: flex; flex-direction: column; z-index: 10; }
-        .brand { font-size: 26px; font-weight: 900; color: var(--neon); margin-bottom: 40px; letter-spacing: -1px; }
-        .nav-label { font-size: 10px; text-transform: uppercase; color: #444; letter-spacing: 2px; margin-bottom: 15px; display: block; }
-        .nav-item { padding: 14px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 12px; font-size: 14px; color: #888; margin-bottom: 8px; border: 1px solid transparent; }
-        .nav-item:hover, .nav-item.active { background: #111; color: var(--neon); border-color: #222; }
-
-        /* Main Viewport */
-        main { flex: 1; overflow-y: auto; padding: 40px; background: radial-gradient(circle at top right, #0d0d0d, #000); }
-        .dashboard-header { background: var(--glass); border: 1px solid var(--neon); border-radius: 24px; padding: 35px; margin-bottom: 30px; box-shadow: 0 0 40px rgba(0, 255, 163, 0.05); }
+        :root { --primary: #ff003c; --accent: #ff0080; --bg: #050001; }
+        body { background: var(--bg); font-family: 'Inter', sans-serif; color: #fff; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
         
-        /* Intelligence Engine */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
-        .card { background: var(--card); border: 1px solid #1a1a1a; padding: 30px; border-radius: 24px; position: relative; overflow: hidden; }
-        .card::after { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon); opacity: 0.3; }
-        .card h3 { color: var(--neon); margin-top: 0; font-size: 20px; }
-
-        /* Inputs & Buttons */
-        input { width: 100%; background: #000; border: 1px solid #333; padding: 15px; border-radius: 12px; color: #fff; margin-bottom: 15px; outline: none; }
-        input:focus { border-color: var(--neon); }
-        .btn-elite { background: var(--neon); color: #000; border: none; padding: 15px 30px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; text-transform: uppercase; }
-
-        /* Right Authority Sidebar */
-        .sidebar { width: 380px; background: #050505; border-left: 1px solid #1a1a1a; padding: 25px; overflow-y: auto; }
-        .profile-box { text-align: center; margin-bottom: 40px; }
-        .avatar { width: 150px; height: 150px; border-radius: 40px; border: 2px solid var(--neon); object-fit: cover; margin-bottom: 15px; box-shadow: 0 0 20px rgba(0,255,163,0.2); }
-        .cert-stack img { width: 100%; border-radius: 15px; margin-bottom: 20px; border: 1px solid #222; cursor: pointer; }
-        .cert-stack img:hover { border-color: var(--neon); transform: translateY(-5px); }
-
-        /* WhatsApp Global Funnel */
-        .wa-global { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; padding: 18px 35px; border-radius: 50px; text-decoration: none; font-weight: 900; z-index: 1000; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 30px; }
+        .red-glow-box { border: 1px solid rgba(255, 0, 60, 0.3); box-shadow: 0 0 25px rgba(255, 0, 60, 0.15); }
+        .sidebar { transform: translateX(-100%); transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000; background: #0a0002; border-right: 2px solid var(--primary); }
+        .sidebar.active { transform: translateX(0); }
+        .btn-main { background: linear-gradient(135deg, #ff003c 0%, #80001e 100%); border: 1px solid rgba(255, 255, 255, 0.2); }
+        
+        .modal { display: none; position: fixed; inset: 0; background: #000; z-index: 2000; overflow-y: auto; padding-bottom: 150px; }
+        ::-webkit-scrollbar { width: 0; }
+        
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+        .live-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="brand">AAKIB ELITE OS</div>
-        <span class="nav-label">Medical Analytics</span>
-        <div class="nav-item" onclick="show('diabetes')"><i class="fas fa-notes-medical"></i> Diabetes Type 1/2</div>
-        <div class="nav-item" onclick="show('thyroid')"><i class="fas fa-vial"></i> Thyroid & Metabolic</div>
-        <div class="nav-item" onclick="show('pcos')"><i class="fas fa-venus"></i> PCOS / Oncology</div>
-
-        <span class="nav-label" style="margin-top:20px;">Bodybuilding OS</span>
-        <div class="nav-item" onclick="show('bulk')"><i class="fas fa-dumbbell"></i> Pro-Hypertrophy</div>
-        <div class="nav-item" onclick="show('shred')"><i class="fas fa-fire"></i> Metabolic Shred</div>
-        <div class="nav-item" onclick="show('aas')"><i class="fas fa-pills"></i> AAS Safety & PCT</div>
-    </nav>
-
-    <main id="main-content">
-        <div class="dashboard-header">
-            <h1 style="margin:0; font-size:32px;">COMMAND CENTER</h1>
-            <p style="color:#555;">Real-time sync with Google Research & Medifit Global Database</p>
-            <div style="display:flex; gap:10px; margin-top:25px;">
-                <input type="text" id="aiIn" placeholder="Ask anything: 'BMR for 82kg', 'Kidney support during cycles'...">
-                <button class="btn-elite" style="width:200px;" onclick="runAI()">EXECUTE</button>
-            </div>
-            <div id="aiOut" style="margin-top:20px; display:none; padding:20px; background:#000; border-radius:15px; border-left:5px solid var(--neon);"></div>
+    <!-- Sidebar: 17 Verified Qualifications -->
+    <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/95 hidden z-[999]"></div>
+    <div id="sidebar" class="fixed top-0 left-0 h-full w-[85%] sidebar p-8 overflow-y-auto">
+        <div class="mb-10">
+            <h2 class="text-3xl font-black italic tracking-tighter">OFFICIAL<span class="text-[#ff003c]">VAULT</span></h2>
+            <p class="text-[8px] uppercase tracking-[4px] text-gray-500 mt-2">Verified Documents & Certs</p>
         </div>
 
-        <div class="grid" id="grid">
-            <div class="card">
-                <h3>Diagnostic: BMR/Macros</h3>
-                <input type="number" id="wt" placeholder="Your Weight (kg) - e.g. 82">
-                <button class="btn-elite" onclick="calc()">CALCULATE MACROS</button>
-                <div id="stats" style="margin-top:20px; font-size:14px;"></div>
+        <div class="grid grid-cols-1 gap-3" id="qualificationsList">
+            <!-- JS will inject 17 links here -->
+        </div>
+
+        <div class="mt-12 pt-12 border-t border-white/5 space-y-4">
+            <p class="text-[10px] font-black uppercase text-gray-600">Developer Identity</p>
+            <p class="text-xs font-bold text-white/40">Build: V9.0.26 (Live)</p>
+            <p class="text-[#ff003c] italic font-bold">Created By Syed Akki Tech Developer</p>
+        </div>
+    </div>
+
+    <!-- Live Header -->
+    <header class="p-6 sticky top-0 glass-panel !rounded-none z-50 flex justify-between items-center border-b border-white/5">
+        <button onclick="toggleSidebar()" class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 active:scale-90 transition">
+            <i class="fas fa-bars-staggered text-[#ff003c] text-xl"></i>
+        </button>
+        <div class="text-center">
+            <h1 class="text-xl font-black italic tracking-tighter uppercase">Syed <span class="text-[#ff003c]">Akki</span></h1>
+            <div class="flex items-center justify-center gap-2">
+                <span class="live-dot"></span>
+                <p class="text-[7px] font-black uppercase tracking-[3px] text-white/50">Elite Live Website</p>
             </div>
-            <div class="card">
-                <h3>System Authority</h3>
-                <p style="color:#888; font-size:13px;">WHO Standards Applied: 5.5L Water/Day<br>Mineral Balance: Zinc/Magnesium mandatory.<br>Status: <span style="color:var(--neon)">CERTIFIED</span></p>
+        </div>
+        <div class="w-12 h-12 rounded-2xl btn-main flex items-center justify-center font-black shadow-lg border border-white/10">SA</div>
+    </header>
+
+    <main class="p-6 pb-48">
+        <!-- Google Search Engine -->
+        <div class="glass-panel p-2 mb-12 red-glow-box flex items-center">
+            <div class="flex-1 flex items-center px-4">
+                <i class="fas fa-search text-[#ff003c] mr-3"></i>
+                <input type="text" id="webSearch" placeholder="Ask anything to Google/YouTube..." class="bg-transparent border-none outline-none text-sm w-full py-4 text-white">
             </div>
+            <button onclick="executeSearch()" class="btn-main px-8 py-4 rounded-[22px] text-[10px] font-black uppercase tracking-widest active:scale-95 transition">Search</button>
+        </div>
+
+        <!-- 10 Diet Section -->
+        <div class="flex justify-between items-center mb-8 ml-2">
+            <div>
+                <h3 class="text-xs font-black uppercase tracking-[3px] text-[#ff003c]">10 Complete Diets</h3>
+                <p class="text-[8px] text-gray-500 uppercase mt-1">Professional Nutrition Plans</p>
+            </div>
+            <i class="fas fa-fire-flame-curved text-xl opacity-20 text-[#ff003c]"></i>
+        </div>
+        
+        <div id="dietContainer" class="space-y-4 mb-16"></div>
+
+        <!-- Professional Contacts -->
+        <div class="pt-16 border-t border-white/5 text-center">
+            <p class="text-[10px] font-black uppercase tracking-[4px] mb-8 text-gray-600">Connect with Developer</p>
+            <div class="flex justify-center gap-6 mb-12">
+                <a href="https://wa.me/971564583055" class="w-14 h-14 rounded-2xl glass-panel flex items-center justify-center text-xl text-white hover:bg-[#ff003c] transition-all"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com" class="w-14 h-14 rounded-2xl glass-panel flex items-center justify-center text-xl text-white hover:bg-[#ff003c] transition-all"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com" class="w-14 h-14 rounded-2xl glass-panel flex items-center justify-center text-xl text-white hover:bg-[#ff003c] transition-all"><i class="fab fa-youtube"></i></a>
+                <a href="https://linkedin.com" class="w-14 h-14 rounded-2xl glass-panel flex items-center justify-center text-xl text-white hover:bg-[#ff003c] transition-all"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <button onclick="shareApp()" class="text-[10px] font-black uppercase bg-white/5 px-10 py-4 rounded-full border border-white/10 active:scale-95 transition">Share This OS <i class="fas fa-share-nodes ml-2"></i></button>
         </div>
     </main>
 
-    <aside class="sidebar">
-        <div class="profile-box">
-            <img src="1000268759.jpg" onerror="this.src='https://via.placeholder.com/150/00ffa3/000000?text=COACH+AAKIB'" class="avatar">
-            <h2 style="margin:0;">COACH AAKIB</h2>
-            <p style="color:var(--neon); font-size:11px; letter-spacing:1px; font-weight:bold;">INTERNATIONAL NUTRITION SCIENTIST</p>
+    <!-- Detailed Diet Modal -->
+    <div id="planModal" class="modal p-8">
+        <div class="flex justify-between items-center mb-10 sticky top-0 bg-black/95 py-6 border-b border-white/5">
+            <h2 id="modalTitle" class="text-2xl font-black text-[#ff003c] italic uppercase"></h2>
+            <button onclick="closeModal()" class="text-5xl text-white font-thin">&times;</button>
         </div>
+        <div id="modalStats" class="grid grid-cols-3 gap-3 mb-10"></div>
+        <div id="modalMeals" class="space-y-6"></div>
+    </div>
 
-        <span class="nav-label">Global Accreditations</span>
-        <div class="cert-stack">
-            <img src="1000264424.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/00ffa3?text=FGIIT+DIPLOMA'">
-            <img src="1000264407.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/00ffa3?text=SKILL+INDIA'">
-            <img src="1000264408.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/00ffa3?text=LONDON+COLLEGE'">
-            <img src="1000264422.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/00ffa3?text=SNT+SPECIALIST'">
-        </div>
-    </aside>
-
-    <a href="https://wa.me/971564583055?text=I%20want%20to%20unlock%20the%20Premium%20Clinical%20Protocol" class="wa-global">
-        <i class="fab fa-whatsapp"></i> UNLOCK ELITE PROTOCOLS
-    </a>
+    <!-- Persistent CTA Button -->
+    <div class="fixed bottom-8 left-8 right-8 z-[100]">
+        <a href="https://wa.me/971564583055?text=Hi%20Syed%20Akki,%20I%20am%20interested%20in%20Personal%20Training." 
+           class="w-full btn-main text-white font-black py-6 rounded-[35px] shadow-[0_20px_50px_rgba(255,0,60,0.4)] flex items-center justify-center gap-4 text-sm tracking-[2px] uppercase active:scale-95 transition">
+            <i class="fab fa-whatsapp text-2xl"></i> START PERSONAL TRAINING
+        </a>
+    </div>
 
     <script>
-        function runAI() {
-            const q = document.getElementById('aiIn').value;
-            const out = document.getElementById('aiOut');
-            out.style.display = "block";
-            out.innerHTML = `<i class='fas fa-circle-notch fa-spin'></i> Pinging Global Sports Science Nodes...`;
-            setTimeout(() => {
-                out.innerHTML = `<b style='color:var(--neon)'>VERIFIED RESEARCH:</b> Analysis for "${q}" confirms that high-level metabolic optimization depends on electrolyte balance. For a performance athlete, dosages must be adjusted by 1.2x. Connect via WhatsApp for the full PDF documentation.`;
-            }, 1800);
+        // Qualification IDs (17 Certs)
+        const certIds = ["1YLq-x2PTh5GUHhNRSJ33_qZkOW0_-9z3", "1-GMVsO6eLBA0DxSUKGL96rgViJ8GKO2U", "1PmhESk3boCxjGKNsFxqC6smRDXXombbh", "1-m9CcsCk02NVz3e8yvWnJFxyHVFErEGs", "1-1V6HKhGleuaROs17K5lqkid1lnTGieW", "1JZhEDYgtL024X1G6h-YF3OGvRPH1E4qv", "1GYUaXfvqxc8Tk8C7izNJIpS8jrKZjHap", "1ga5tOZRLbjAoR_OolzZqbVp1ihMT7QyB", "1LFJGXShSuE-cPrFX4RjdJuPjyOvq24GQ", "11mhM8KxxOE0FYG1-Xv7Qe4qqK521BxJs", "1z7n4IuMTG8CXx6UWTE9Eyc5X8JYzg-lK", "1HXSGYa5mwk801LpGFtLeZnG8UBg6upNF", "1TSYu4UiWWEe1Aod-Ruooejy-fMDjC3o0", "1FfbvTSdNQex38j9io3lhQxNbcLfPyDB0", "108nRO0gxXXLYUMact9Op1Kz-IQ__uE6e", "1nbqw5bCRUDZxal0Q9A3BLnbCxkwq2NK8", "1lKQXXN88xTOjP1nE7nuaM6bGjRDZ5s5U"];
+
+        // 10 Strategic Diet Plans
+        const diets = [
+            {n: "Extreme Mass Gainer", cal: 3200, p: 180, c: 450, f: 75, m: ["100g Oats, 4 Eggs, Milk", "200g Rice, 150g Chicken, Curd", "150g Sweet Potato, Whey", "150g Rice, 120g Chicken, Salad", "2 Bananas, 30g Almonds", "50g Paneer/Casein"]},
+            {n: "Elite Lean Shred", cal: 1800, p: 170, c: 120, f: 55, m: ["6 Egg Whites, Spinach", "150g Fish, Green Salad", "1 Scoop Whey, 10 Almonds", "150g Chicken Breast, Broccoli", "1 Apple, Black Coffee", "Fiber Shake"]},
+            {n: "Cyber Keto Burn", cal: 1600, p: 130, c: 25, f: 115, m: ["3 Eggs in Butter, Avocado", "150g Paneer, Olive Oil", "30g Walnuts", "150g Salmon, Asparagus", "Bulletproof Coffee", "20g Cheese"]},
+            {n: "PCOS Wellness", cal: 1750, p: 100, c: 160, f: 65, m: ["Chia Pudding, Almond Milk", "150g Dal, 1 Roti, Veggies", "Flax Seeds, Berries", "150g Fish, Salad", "Green Tea, Walnuts", "Greek Yogurt"]},
+            {n: "Plant-Based Hypertrophy", cal: 2400, p: 140, c: 320, f: 60, m: ["Soya Flakes, Soy Milk", "150g Tofu, 150g Brown Rice", "Plant Protein, Banana", "Chickpea Salad (100g)", "Roasted Chana (50g)", "Lentil Soup"]},
+            {n: "Glycemic Index Control", cal: 1800, p: 110, c: 190, f: 55, m: ["Steel Cut Oats, Cinnamon", "100g Boiled Chickpeas", "200g Green Veg, 100g Fish", "Hummus, Cucumber", "Multigrain Roti, Dal", "Soaked Almonds"]},
+            {n: "Hypertrophy Power", cal: 3000, p: 200, c: 380, f: 80, m: ["4 Whole Eggs, 100g Oats", "200g Rice, 150g Steak", "Banana, Whey, PB", "200g Rice, 150g Chicken", "100g Pasta, Turkey", "Casein Shake"]},
+            {n: "Intermittent Shred", cal: 1900, p: 160, c: 150, f: 60, m: ["(1PM) 4 Eggs, 50g Oats", "(3PM) Fruit, 10 Almonds", "(5PM) 150g Chicken, Rice", "(7PM) Whey Protein", "(9PM) 150g Fish, Veggies", "Fast till 1PM"]},
+            {n: "Hybrid Endurance", cal: 2600, p: 130, c: 410, f: 65, m: ["Oat Pancakes, Honey", "200g Rice, 1 Potato", "Energy Gel, Banana", "150g Pasta, Chicken", "80g Rice, 100g Fish", "Electrolytes"]},
+            {n: "Aesthetic Detox Glow", cal: 1500, p: 90, c: 160, f: 50, m: ["Berry Smoothie Bowl", "Lemon Ginger Water", "Spinach Salad, 100g Chicken", "Coconut Water", "Steamed Fish, Broccoli", "Chamomile Tea"]}
+        ];
+
+        function init() {
+            const qBox = document.getElementById('qualificationsList');
+            certIds.forEach((id, i) => {
+                qBox.innerHTML += `
+                    <div onclick="window.open('https://drive.google.com/file/d/${id}/view')" class="p-5 glass-panel flex items-center gap-4 active:bg-[#ff003c]/20 transition-all border border-white/5 mb-2">
+                        <i class="fas fa-file-shield text-[#ff003c]"></i>
+                        <span class="text-[10px] font-black uppercase tracking-widest">Verification 0${i+1}</span>
+                    </div>`;
+            });
+
+            const dGrid = document.getElementById('dietContainer');
+            diets.forEach((p, i) => {
+                dGrid.innerHTML += `
+                    <div class="glass-panel p-6 flex justify-between items-center active:scale-95 transition-all red-glow-box">
+                        <div>
+                            <p class="text-[8px] text-[#ff003c] font-black uppercase tracking-[2px]">System Plan 0${i+1}</p>
+                            <h4 class="font-black text-xs uppercase text-white/90">${p.n}</h4>
+                        </div>
+                        <button onclick="viewDiet(${i})" class="bg-white/5 border border-white/10 px-6 py-3 rounded-2xl text-[9px] font-black uppercase tracking-widest text-[#ff003c]">Analyze</button>
+                    </div>`;
+            });
         }
 
-        function show(type) {
-            const g = document.getElementById('grid');
-            if(type === 'diabetes') {
-                g.innerHTML = `<div class='card' style='grid-column: 1/-1'><h3>Clinical Diabetes Protocol (Level 1)</h3>
-                <p>1. 06:00: ACV + Cinnamon Extract<br>2. 09:00: 60g Oats + 6 Egg Whites<br>3. 13:00: 200g Chicken + Broccoli + Salad<br>4. 16:00: 10 Almonds + Green Tea<br>5. 20:00: 200g Fish + Asparagus<br><br><a href='#' style='color:var(--neon)'><b>UNLOCK FULL 7-DAY MEAL PLAN (PAID)</b></a></div>`;
-            } else if(type === 'bulk') {
-                g.innerHTML = `<div class='card' style='grid-column: 1/-1'><h3>Elite Hypertrophy OS (Mass Gain)</h3>
-                <p>Meal 1: 120g Cream of Rice + 2 Scoops Whey<br>Meal 2: 250g Chicken + 200g Jasmine Rice<br>Meal 3: (Pre) 1 Banana + 10g EAA<br>Meal 4: (Post) 2 Scoops Isolate + 50g Vitargo<br>Meal 5: 250g Beef + 1 Sweet Potato<br><br><a href='#' style='color:var(--neon)'><b>GET COMPLETE ANABOLIC STACK (PAID)</b></a></div>`;
-            }
+        function viewDiet(i) {
+            const d = diets[i];
+            document.getElementById('modalTitle').innerText = d.n;
+            document.getElementById('modalStats').innerHTML = `
+                <div class="glass-panel p-5 text-center border-white/10"><p class="text-[8px] opacity-40 uppercase mb-1">Calories</p><p class="text-xs font-black text-white">${d.cal}</p></div>
+                <div class="glass-panel p-5 text-center border-white/10"><p class="text-[8px] opacity-40 uppercase mb-1">Protein</p><p class="text-xs font-black text-[#ff003c]">${d.p}g</p></div>
+                <div class="glass-panel p-5 text-center border-white/10"><p class="text-[8px] opacity-40 uppercase mb-1">Carbs</p><p class="text-xs font-black text-pink-400">${d.c}g</p></div>`;
+            let h = "";
+            d.m.forEach((meal, idx) => {
+                h += `<div class="glass-panel p-6 border-l-4 border-[#ff003c] shadow-lg"><p class="text-[9px] text-gray-500 font-black uppercase mb-2">Meal Phase 0${idx+1}</p><p class="text-sm font-bold opacity-90">${meal}</p></div>`;
+            });
+            document.getElementById('modalMeals').innerHTML = h;
+            document.getElementById('planModal').style.display = "block";
+            document.body.style.overflow = "hidden";
         }
 
-        function calc() {
-            const w = document.getElementById('wt').value || 82;
-            document.getElementById('stats').innerHTML = `<b style='color:var(--neon)'>DAILY TARGETS:</b><br>Protein: ${(w*2.2).toFixed(0)}g | Carbs: ${(w*4).toFixed(0)}g | Fats: ${(w*0.8).toFixed(0)}g<br>Maintenance: ${(w*33).toFixed(0)} Kcal`;
+        function executeSearch() {
+            const q = document.getElementById('webSearch').value;
+            if(!q) return;
+            const url = q.toLowerCase().includes('youtube') ? `https://www.youtube.com/results?search_query=${q}` : `https://www.google.com/search?q=${q}`;
+            window.open(url, '_blank');
         }
+
+        function toggleSidebar() { 
+            document.getElementById('sidebar').classList.toggle('active'); 
+            document.getElementById('overlay').classList.toggle('hidden'); 
+        }
+        function closeModal() { 
+            document.getElementById('planModal').style.display = "none"; 
+            document.body.style.overflow = "auto";
+        }
+        function shareApp() { 
+            if (navigator.share) navigator.share({ title: 'Syed Akki Elite Fitness', url: window.location.href }); 
+        }
+        
+        init();
     </script>
 </body>
 </html>
